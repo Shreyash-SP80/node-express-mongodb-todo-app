@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1>Taks list page</h1>
+        <form action="/multi-delete" method="post">
+            <button class="delete-item" style="margin-bottom: 10px;">Delete Selected Tasks</button>
+            <ul class="task-list">
+                <% for(let task = 0; task < result.length; task++) { %>
+                    <li class="task-item">
+                        <div class="task-title">
+                            <%= result[task].title %>
+                        </div>
+                        <div class="task-description">
+                            <%= result[task].description %>
+                        </div>
+                        <input type="checkbox" name="selectedTask" value="<%= result[task]._id %>" >
+                        <a href="/delete/<%= result[task]._id %>" class="delete-item">Delete</a>
+                        <a href="/update/<%= result[task]._id %>" class="update-item">Update</a>
+                    </li>
+                <% } %>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
